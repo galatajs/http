@@ -1,0 +1,29 @@
+// @ts-ignore
+import request from "supertest";
+import { server } from "./app";
+
+describe("http e2e stack testing", () => {
+  it("hello world route testing", async () => {
+    request(server.instance).get("/api/main").expect(200).expect("Hello world");
+  });
+
+  it("not found route testing", async () => {
+    request(server.instance).get("/api/not-found").expect(404);
+  });
+
+  it("middleware testing positive", async () => {
+    request(server.instance)
+      .post("/test/main")
+      .send({ name: "istanbul" })
+      .expect(200)
+      .expect("Hello world");
+  });
+
+  it("middleware testing negative", async () => {
+    request(server.instance)
+      .post("/test/main")
+      .send({ name: "istanbul2" })
+      .expect(400)
+      .expect("name is not istanbul");
+  });
+});
