@@ -1,3 +1,9 @@
+/*
+ * istanbul @http
+ * Copyright(c) 2022 Sami Salih İBRAHİMBAŞ
+ * MIT Licensed
+ */
+
 export * from "./hooks";
 export * from "./types/types";
 export * from "./router/router";
