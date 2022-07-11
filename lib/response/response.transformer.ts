@@ -2,12 +2,12 @@ import http from "http";
 import {
   ErrorDataResult,
   ErrorResult,
+  Status,
   SuccessDataResult,
   SuccessResult,
 } from "@istanbul/core";
 import http2 from "http2";
 import { Http1Response, Http2Response, BaseResponse } from "./response";
-import { HttpStatus } from "../types/types";
 import { setCookie } from "../cookie/cookie.setter";
 import { setHead } from "../header/header.setter";
 import { HeaderSetterParams } from "../header/header";
@@ -23,7 +23,7 @@ const useBaseResponse = (
     success(message: string): void {
       this.done<SuccessResult>(new SuccessResult(message));
     },
-    error(message: string, code: number = HttpStatus.BAD_REQUEST): void {
+    error(message: string, code: number = Status.BAD_REQUEST): void {
       this.done<ErrorResult>(new ErrorResult(message, code));
     },
     successData<T>(message: string, data: T): void {
@@ -32,7 +32,7 @@ const useBaseResponse = (
     errorData<T>(
       message: string,
       data: T,
-      code: number = HttpStatus.BAD_REQUEST
+      code: number = Status.BAD_REQUEST
     ): void {
       this.done<ErrorDataResult<T>>(
         new ErrorDataResult<T>(message, data, code)
@@ -41,20 +41,20 @@ const useBaseResponse = (
     done<T>(data: T & { code?: number; status?: number }): void {
       if (!res.writableEnded) {
         if (data.code || data.status) {
-          res.statusCode = data.status || data.code || HttpStatus.OK;
+          res.statusCode = data.status || data.code || Status.OK;
         }
         res.setHeader("Content-Type", "application/json");
         res.end(typeof data === "string" ? data : JSON.stringify(data));
       }
     },
     badRequest(message: string) {
-      this.error(message, HttpStatus.BAD_REQUEST);
+      this.error(message, Status.BAD_REQUEST);
     },
     notFound(message: string) {
-      this.error(message, HttpStatus.NOT_FOUND);
+      this.error(message, Status.NOT_FOUND);
     },
     serverError(message: string) {
-      this.error(message, HttpStatus.INTERNAL_SERVER_ERROR);
+      this.error(message, Status.INTERNAL_SERVER_ERROR);
     },
     send<T>(data?: T) {
       this.done<T>(data);

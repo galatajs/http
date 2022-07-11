@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@istanbul/app": "^0.0.2",
-    "@istanbul/core": "^0.0.3",
+    "@istanbul/core": "^0.0.6",
     "@istanbul/events": "^0.0.4"
   },
   "devDependencies": {

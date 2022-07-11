@@ -1,6 +1,5 @@
 import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
-import http from "http";
 import { mainRouter } from "./router.hooks";
 import {
   Http1App,

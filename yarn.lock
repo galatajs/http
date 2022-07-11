@@ -298,10 +298,10 @@
   dependencies:
     "@istanbul/events" "^0.0.4"
 
-"@istanbul/core@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@istanbul/core/-/core-0.0.3.tgz#6ddf4bc1d82a9c6c4e145b446569d1bbb25293d6"
-  integrity sha512-AnOPrIlBNyl1Re6lHYvx/pHkuPPoPyWyJ527u2X4KXb6j3SmI29eNNacTlUd3uMuMUIT8oCpMYrdrwbeSuLPbA==
+"@istanbul/core@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@istanbul/core/-/core-0.0.6.tgz#230683020eb6c68dd235b61f805d434f92c4a758"
+  integrity sha512-spbPUkTf0V6tnfisMvpTqARiOvU/anSsyYLX1Y0A93lkWnzSr5qq0S/ZaN4tRNyECkvvLVf3GJ+qomHdQNWYeg==
 
 "@istanbul/events@^0.0.4":
   version "0.0.4"
