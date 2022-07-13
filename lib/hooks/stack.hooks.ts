@@ -32,7 +32,8 @@ export const createStack = (
         (route.isAll || route.methods.includes(req.method as HttpMethods)) &&
         (req.url === path || route.path.includes(":")) &&
         req.url!.includes(prefix) &&
-        req.url!.split("/").length === path.split("/").length
+        (req.url!.split("/").length === path.split("/").length ||
+          route.path === "*")
       ) {
         route.middlewares.forEach((middleware) => {
           this.setMiddleware(middleware);

@@ -68,6 +68,10 @@ router.post("header", (req, res) => {
   res.success("ok");
 });
 
+router.all("*", (req, res) => {
+  res.success("Hello star");
+});
+
 createRouter({
   prefix: "test",
   routes: [mainRoute],

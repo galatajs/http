@@ -26,4 +26,15 @@ describe("http e2e stack testing", () => {
       .expect(400)
       .expect("name is not istanbul");
   });
+
+  it("star route testing", () => {
+    request(server.instance)
+      .get("/api/main/test")
+      .expect(200)
+      .expect("Hello star");
+  });
+
+  it("star route with exist route testing", () => {
+    request(server.instance).get("/api/main").expect(200).expect("Hello world");
+  });
 });
