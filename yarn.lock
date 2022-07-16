@@ -291,10 +291,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@istanbul/app@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@istanbul/app/-/app-0.0.2.tgz#e857aabe5e55311fc72c28f6fe5a4f07c36b06c7"
-  integrity sha512-zrNFfXjLKlwmkbH0zNPjwH89ZHkfakysF/y/73tXQl46G431RSVtLtOV5RGPcpBKf2isulswkNx97p+/dXUu4g==
+"@istanbul/app@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@istanbul/app/-/app-0.0.8.tgz#521757ad5c267316105adf28f59ddfe35c84530a"
+  integrity sha512-BTJ8ElboQCCY48t9tHv6CeZxRxrAO5hLhMdtoGTJ9SdW5qGVe+uEvWZj5H3v2G7zrfk7lIKkaJOrNRugwVH1yQ==
   dependencies:
     "@istanbul/events" "^0.0.4"
 
