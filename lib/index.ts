@@ -1,4 +1,4 @@
-/*
+/**
  * istanbul @http
  * Copyright(c) 2022 Sami Salih İBRAHİMBAŞ
  * MIT Licensed
@@ -13,3 +13,5 @@ export * from "./http2/http2";
 export * from "./http1/http1";
 export * from "./app/http.application";
 export * from "./cookie/cookie";
+export { Http1Request, Http2Request } from "./request/request";
+export { Http1Response, Http2Response } from "./response/response";
