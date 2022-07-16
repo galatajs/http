@@ -51,7 +51,6 @@ export const createHttpServer = (
           this.instance = httpCreator(handler, options);
           this.start();
         },
-        onAppStarted: () => {},
       };
     },
     start() {

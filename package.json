@@ -1,6 +1,6 @@
 {
   "name": "@istanbul/http",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Http packages of istanbul framework",
   "homepage": "https://github.com/istanbulnode/http#readme",
   "keywords": [
@@ -38,7 +38,7 @@
     "build": "npm run clear && tsc"
   },
   "dependencies": {
-    "@istanbul/app": "^0.0.8",
+    "@istanbul/app": "^0.0.10",
     "@istanbul/core": "^0.0.6",
     "@istanbul/events": "^0.0.4"
   },
