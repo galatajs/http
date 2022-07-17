@@ -11,6 +11,7 @@ import { Http1Response, Http2Response, BaseResponse } from "./response";
 import { setCookie } from "../cookie/cookie.setter";
 import { setHead } from "../header/header.setter";
 import { HeaderSetterParams } from "../header/header";
+import { removeHead } from "../header/header.remover";
 
 const useBaseResponse = (
   res: http.ServerResponse | http2.Http2ServerResponse
@@ -59,14 +60,17 @@ const useBaseResponse = (
     send<T>(data?: T) {
       this.done<T>(data);
     },
-    cookies: {
+    cookie: {
       set(key: string, value: string): void {
         setCookie(res, key, value);
       },
     },
-    headers: {
+    header: {
       set(key: string, value: HeaderSetterParams): void {
         setHead(res, key, value);
+      },
+      remove(key: string): void {
+        removeHead(res, key);
       },
     },
   };
@@ -75,17 +79,11 @@ const useBaseResponse = (
 export const transformHttp1Response = (
   res: http.ServerResponse
 ): Http1Response => {
-  return {
-    ...res,
-    ...useBaseResponse(res),
-  } as Http1Response;
+  return Object.assign(res, useBaseResponse(res));
 };
 
 export const transformHttp2Response = (
   res: http2.Http2ServerResponse
 ): Http2Response => {
-  return {
-    ...res,
-    ...useBaseResponse(res),
-  } as Http2Response;
+  return Object.assign(res, useBaseResponse(res));
 };

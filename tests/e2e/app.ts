@@ -50,21 +50,21 @@ router.post("body", (req, res) => {
 });
 
 router.get("cookie", (req, res) => {
-  const cookie = req.cookies.get("test");
+  const cookie = req.cookie.get("test");
   res.successData("cookie", cookie);
 });
 
 router.post("cookie", (req, res) => {
-  res.cookies.set("test", "test");
+  res.cookie.set("test", "test");
   res.success("ok");
 });
 
 router.get("header", (req, res) => {
-  res.successData("header", req.headers.get("test"));
+  res.successData("header", req.header.get("test"));
 });
 
 router.post("header", (req, res) => {
-  res.headers.set("test", "test");
+  res.header.set("test", "test");
   res.success("ok");
 });
 

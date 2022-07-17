@@ -9,6 +9,6 @@ export type CookieOptions = {
   domain?: string;
 };
 
-export type CookieGetter = Getter<string>;
+export type CookieGetter = Getter<string | undefined>;
 export type CookieSetter = Setter<string, CookieOptions>;
 export type Cookie = CookieGetter & CookieSetter;

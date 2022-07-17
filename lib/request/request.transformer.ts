@@ -1,7 +1,7 @@
 import http from "http";
 import url from "url";
 import http2 from "http2";
-import { Http1Request, Http2Request } from "./request";
+import { BaseRequest, Http1Request, Http2Request } from "./request";
 import {
   ContentTypeEnum,
   ParserEnum,
@@ -27,23 +27,22 @@ const getBody = async (
   return body;
 };
 
-const baseTransformRequest = async (
+const createBaseRequest = async (
   req: http.IncomingMessage | http2.Http2ServerRequest
-) => {
+): Promise<BaseRequest> => {
   const query = { ...url.parse(req.url || "", true).query };
   req.url = req.url?.split("?")[0];
   return {
-    ...req,
     ip: req.socket.remoteAddress || "0.0.0.0",
     body: await getBody(req),
     params: {},
     query: query,
-    cookies: {
+    cookie: {
       get(key: string): string | undefined {
         return getCookie(req, key);
       },
     },
-    headers: {
+    header: {
       get(key: string): HeaderGetterResult {
         return getHead(req, key);
       },
@@ -51,16 +50,22 @@ const baseTransformRequest = async (
   };
 };
 
+const baseTransformRequest = async (
+  req: http.IncomingMessage | http2.Http2ServerRequest
+) => {
+  return Object.assign(req, await createBaseRequest(req));
+};
+
 export const transformHttp1Request = async (
   req: http.IncomingMessage
 ): Promise<Http1Request> => {
-  return (await baseTransformRequest(req)) as Http1Request;
+  return baseTransformRequest(req) as Promise<Http1Request>;
 };
 
 export const transformHttp2Request = async (
   req: http2.Http2ServerRequest
 ): Promise<Http2Request> => {
-  return (await baseTransformRequest(req)) as Http2Request;
+  return baseTransformRequest(req) as Promise<Http2Request>;
 };
 
 export const transformHttpRouteParams = (

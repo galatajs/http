@@ -50,6 +50,10 @@ export type Getter<T> = {
   get(key: string): T;
 };
 
+export type Remover = {
+  remove(key: string): void;
+};
+
 export type Setter<T, O = any> = {
   set(key: string, value: T, options?: O): void;
 };

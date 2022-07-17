@@ -2,9 +2,10 @@ import http from "http";
 import http2 from "http2";
 import { CookieSetter } from "../cookie/cookie";
 import { HeaderSetter } from "../header/header";
+import { Remover } from "../types/types";
 
 export interface BaseResponse {
-  status(status: number): this;
+  status(status: number): void;
   success(message: string): void;
   error(message: string, code?: number): void;
   successData<T>(message: string, data: T): void;
@@ -14,8 +15,8 @@ export interface BaseResponse {
   serverError(message: string): void;
   send<T>(data?: T): void;
   done<T>(data?: T): void;
-  cookies: CookieSetter;
-  headers: HeaderSetter;
+  cookie: CookieSetter;
+  header: HeaderSetter & Remover;
 }
 
 export interface Http1Response extends http.ServerResponse, BaseResponse {}

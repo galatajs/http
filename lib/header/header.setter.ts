@@ -9,3 +9,4 @@ export const setHead = (
 ): void => {
   res.setHeader(key, value);
 };
+

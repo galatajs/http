@@ -9,12 +9,9 @@ export interface BaseRequest {
   body: Record<string, any>;
   params: Record<string, any>;
   query: Record<string, any>;
-  cookies: CookieGetter;
-  headers: HeaderGetter;
+  cookie: CookieGetter;
+  header: HeaderGetter;
 }
 
-type Http1BaseRequest = Modify<http.IncomingMessage, BaseRequest>;
-type Http2BaseRequest = Modify<http2.Http2ServerRequest, BaseRequest>;
-
-export interface Http1Request extends Http1BaseRequest {}
-export interface Http2Request extends Http2BaseRequest {}
+export interface Http1Request extends http.IncomingMessage, BaseRequest {}
+export interface Http2Request extends http2.Http2ServerRequest, BaseRequest {}
