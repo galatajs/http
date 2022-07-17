@@ -10,6 +10,7 @@ import {
 import { onServerStarted, ServerCreatedListener } from "../events/http.events";
 import { SecureServerOptions } from "http2";
 import { useHttp1App } from "./http1.hooks";
+import { App } from "@istanbul/app";
 
 const notFoundRoute: RequestHandler = (req, res, next) => {
   res.notFound(`Cannot ${req.method} ${req.url}`);
@@ -39,7 +40,14 @@ export const createHttpServer = (
       return {
         name: "http",
         version: "1.0.0",
-        install: () => {
+        install: (app: App) => {
+          const middleware = app.store.inject(
+            "istanbuljs:cors-http-middleware",
+            true
+          );
+          if (middleware) {
+            this.use(middleware);
+          }
           const handler = (req, res) => {
             this.router.handle(
               req,

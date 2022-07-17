@@ -1,5 +1,5 @@
-import { MainRouter } from "../router/router";
 import { CorePlugin } from "@istanbul/app";
+import { MainRouter } from "../router/router";
 import { Middleware } from "../middleware/middleware";
 import { ErrorHandler, RequestHandler, Server } from "../types/types";
 import { ServerCreatedListener } from "../events/http.events";
