@@ -1,6 +1,6 @@
 {
   "name": "@istanbul/http",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Http packages of istanbul framework",
   "homepage": "https://github.com/istanbulnode/http#readme",
   "keywords": [
@@ -33,9 +33,10 @@
     "dist/**/*"
   ],
   "scripts": {
-    "test": "npm run build && node --no-warnings --test",
+    "test": "node --no-warnings --test",
     "clear": "del-cli ./dist/*",
-    "build": "npm run clear && tsc"
+    "build": "npm run clear && tsc",
+    "production": "npm run build && npm run test"
   },
   "dependencies": {
     "@istanbul/app": "^0.0.18",

@@ -19,5 +19,6 @@ export interface HttpApplication {
   build(): CorePlugin;
   use(...middlewares: Middleware[]): void;
   start(): void;
+  close(): void;
   onServerStarted(hook: ServerCreatedListener): void;
 }
