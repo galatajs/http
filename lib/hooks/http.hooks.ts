@@ -1,3 +1,5 @@
+import { SecureServerOptions } from "node:http2";
+import { App } from "@istanbul/app";
 import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
 import { mainRouter } from "./router.hooks";
@@ -8,9 +10,7 @@ import {
   RequestHandler,
 } from "../types/types";
 import { onServerStarted, ServerCreatedListener } from "../events/http.events";
-import { SecureServerOptions } from "http2";
 import { useHttp1App } from "./http1.hooks";
-import { App } from "@istanbul/app";
 
 const notFoundRoute: RequestHandler = (req, res, next) => {
   res.notFound(`Cannot ${req.method} ${req.url}`);

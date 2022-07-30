@@ -2,8 +2,8 @@ import { HttpStack } from "../stack/stack";
 import { Middleware } from "../middleware/middleware";
 import { Router } from "../router/router";
 import { Http1Request, Http2Request } from "../request/request";
-import { HttpMethods } from "../types/types";
 import { Route } from "../router/route";
+import { checkRoute } from "../rules/stack.rules";
 
 export const createStack = (
   req: Http1Request | Http2Request,
@@ -28,13 +28,7 @@ export const createStack = (
     },
     setRoute(route: Route, prefix: string): HttpStack {
       const path = route.makePath(prefix);
-      if (
-        (route.isAll || route.methods.includes(req.method as HttpMethods)) &&
-        (req.url === path || route.path.includes(":")) &&
-        req.url!.includes(prefix) &&
-        (req.url!.split("/").length === path.split("/").length ||
-          route.path === "*")
-      ) {
+      if (checkRoute({ route, prefix, req, path })) {
         route.middlewares.forEach((middleware) => {
           this.setMiddleware(middleware);
         });
@@ -44,8 +38,6 @@ export const createStack = (
       return this;
     },
     setRouter(router: Router, parent: Router | null): HttpStack {
-      this.setMiddlewares(...router.middlewares);
-      this.setRouters(router, ...router.children);
       if (!!this.route) return this;
       router.routes.forEach((route) => {
         if (!this.route) {
@@ -53,6 +45,10 @@ export const createStack = (
           this.setRoute(route, router.makePath(prefix));
         }
       });
+      if (!!this.route) {
+        this.setMiddlewares(...router.middlewares);
+        this.setRouters(router, ...router.children);
+      }
       return this;
     },
     setRouters(parent: null | Router = null, ...routers: Router[]): HttpStack {

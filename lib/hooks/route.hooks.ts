@@ -3,7 +3,7 @@ import { CreateRouteParams, Route } from "../router/route";
 export const createRoute = (createRouteParams: CreateRouteParams): Route => {
   return {
     methods: createRouteParams.methods || [],
-    isAll: createRouteParams.isAll || true,
+    isAll: createRouteParams.isAll || false,
     path: createRouteParams.path,
     version: createRouteParams.version,
     middlewares: createRouteParams.middlewares || [],

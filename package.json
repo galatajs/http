@@ -1,6 +1,6 @@
 {
   "name": "@istanbul/http",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Http packages of istanbul framework",
   "homepage": "https://github.com/istanbulnode/http#readme",
   "keywords": [
@@ -25,7 +25,7 @@
   },
   "directories": {
     "lib": "lib",
-    "test": "tests"
+    "test": "test"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -33,31 +33,18 @@
     "dist/**/*"
   ],
   "scripts": {
-    "test": "jest --watchAll --no-cache",
+    "test": "npm run build && node --no-warnings --test",
     "clear": "del-cli ./dist/*",
     "build": "npm run clear && tsc"
   },
   "dependencies": {
-    "@istanbul/app": "^0.0.14",
+    "@istanbul/app": "^0.0.18",
     "@istanbul/core": "^0.0.8",
-    "@istanbul/events": "^0.0.4"
+    "@istanbul/events": "^0.0.4",
+    "@istanbul/rules": "^0.0.3"
   },
   "devDependencies": {
-    "@types/jest": "^28.1.3",
-    "@types/node": "^18.0.0",
-    "@types/supertest": "^2.0.12",
-    "jest": "^28.1.1",
-    "supertest": "^6.2.4",
-    "ts-jest": "^28.0.5",
-    "ts-node-dev": "^2.0.0",
+    "@types/node": "^18.6.2",
     "typescript": "^4.7.4"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "moduleNameMapper": {
-      "@/(.*)": "<rootDir>/$1",
-      "~/(.*)": "<rootDir>/$1"
-    }
   }
 }

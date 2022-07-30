@@ -1,11 +1,11 @@
-import { createApp } from "@istanbul/app";
-import { createHttpServer, createRoute, createRouter } from "../../lib";
+const { createApp } = require("@istanbul/app");
+const { createHttpServer, createRoute, createRouter } = require("../../dist");
+const Request = require("./request");
 
 const app = createApp();
-
 const server = createHttpServer();
-
-app.register(server.build());
+server.config.host = "127.0.0.1";
+app.register(server);
 
 const mainRoute = createRoute({
   path: "main",
@@ -75,10 +75,53 @@ router.all("*", (req, res) => {
 createRouter({
   prefix: "test",
   routes: [mainRoute],
+  middlewares: [m3],
+});
+
+const routerUnique = createRouter({
+  prefix: "unique",
+});
+routerUnique.get("single", (req, res) => {
+  res.success("Single Listener");
 });
 
 server.use(m1, m2);
 
-app.start();
+let request;
 
-export { app, server };
+const tryConnection = async () => {
+  try {
+    await app.start();
+  } catch (e) {
+    if (e.code === "EADDRINUSE") {
+      tryConnection();
+    }
+  }
+};
+
+beforeAll = async (port) => {
+  if (server.instance && server.instance.listening) return request;
+  server.config.port = port;
+  return new Promise((resolve, reject) => {
+    server.onServerStarted(() => {
+      setTimeout(() => {
+        if (server.instance && server.instance.listening) {
+          const port = server.instance.address().port;
+          const baseUrl = `http://127.0.0.1:${port}`;
+          request = new Request(baseUrl);
+          resolve(request);
+        }
+      }, 100);
+    });
+    tryConnection();
+  });
+};
+
+afterAll = async () => {
+  server.instance.close();
+};
+
+module.exports = {
+  beforeAll,
+  afterAll,
+};
