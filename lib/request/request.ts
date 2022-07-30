@@ -2,7 +2,6 @@ import http from "http";
 import http2 from "http2";
 import { CookieGetter } from "../cookie/cookie";
 import { HeaderGetter } from "../header/header";
-import { Modify } from "../types/types";
 
 export interface BaseRequest {
   ip: string;

@@ -1,5 +1,5 @@
 import { SecureServerOptions } from "node:http2";
-import { App } from "@istanbul/app";
+import { App, warn } from "@istanbul/app";
 import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
 import { mainRouter } from "./router.hooks";
@@ -20,6 +20,10 @@ export const createHttpServer = (
   httpCreator: Http1App | Http2App | Http2SecureApp = useHttp1App(),
   options: SecureServerOptions = {}
 ): HttpApplication => {
+  const showNotBuiltWarn = () => {
+    warn("HTTP - Server is not built yet");
+  };
+
   return {
     instance: undefined,
     config: {
@@ -63,10 +67,18 @@ export const createHttpServer = (
     },
     start() {
       if (this.instance) {
-        this.instance.listen(this.config.port, this.config.host);
-        onServerStarted.publish(this.instance);
+        this.instance.listen(this.config.port, this.config.host, () => {
+          onServerStarted.publish(this.instance!);
+        });
       } else {
-        throw new Error("Server is not built yet");
+        showNotBuiltWarn();
+      }
+    },
+    close() {
+      if (this.instance && this.instance.listening) {
+        this.instance.close();
+      } else {
+        showNotBuiltWarn();
       }
     },
   };

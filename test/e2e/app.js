@@ -104,14 +104,10 @@ beforeAll = async (port) => {
   server.config.port = port;
   return new Promise((resolve, reject) => {
     server.onServerStarted(() => {
-      setTimeout(() => {
-        if (server.instance && server.instance.listening) {
-          const port = server.instance.address().port;
-          const baseUrl = `http://127.0.0.1:${port}`;
-          request = new Request(baseUrl);
-          resolve(request);
-        }
-      }, 100);
+      const port = server.instance.address().port;
+      const baseUrl = `http://127.0.0.1:${port}`;
+      request = new Request(baseUrl);
+      resolve(request);
     });
     tryConnection();
   });
