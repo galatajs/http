@@ -10,6 +10,7 @@ export interface HttpConfig {
   host: string;
   notFoundRoute: RequestHandler;
   errorHandler?: ErrorHandler;
+  serve: boolean;
 }
 
 export interface HttpApplication {
