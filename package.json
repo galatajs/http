@@ -1,6 +1,6 @@
 {
   "name": "@istanbul/http",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Http packages of istanbul framework",
   "homepage": "https://github.com/istanbulnode/http#readme",
   "keywords": [

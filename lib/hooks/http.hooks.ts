@@ -32,7 +32,6 @@ export const createHttpServer = (
       globalPrefix: "/",
       notFoundRoute: notFoundRoute,
       errorHandler: undefined,
-      serve: true,
     },
     router: mainRouter,
     use(..._middlewares: Middleware[]): void {
@@ -76,13 +75,9 @@ export const createHttpServer = (
     },
     start() {
       if (this.instance) {
-        if (this.config.serve) {
-          this.instance.listen(this.config.port, this.config.host, () => {
-            onServerStarted.publish(this.instance!);
-          });
-        } else {
-          onServerStarted.publish(this.instance);
-        }
+        this.instance.listen(this.config.port, this.config.host, () => {
+          onServerStarted.publish(this.instance!);
+        });
       } else {
         showNotBuiltWarn();
       }
