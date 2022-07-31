@@ -1,5 +1,5 @@
 import { SecureServerOptions } from "node:http2";
-import { App, warn } from "@istanbul/app";
+import { App, OnStartedListener, warn } from "@istanbul/app";
 import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
 import { mainRouter } from "./router.hooks";
@@ -41,27 +41,35 @@ export const createHttpServer = (
       onServerStarted.addListener(hook);
     },
     build() {
+      const self = this;
       return {
         name: "http",
         version: "1.0.0",
-        install: (app: App) => {
+        install(app: App): void {
           const middleware = app.store.inject(
             "istanbuljs:cors-http-middleware",
             true
           );
           if (middleware) {
-            this.use(middleware);
+            self.use(middleware);
           }
           const handler = (req, res) => {
-            this.router.handle(
+            self.router.handle(
               req,
               res,
-              this.config.notFoundRoute,
-              this.config.errorHandler
+              self.config.notFoundRoute,
+              self.config.errorHandler
             );
           };
-          this.instance = httpCreator(handler, options);
-          this.start();
+          self.instance = httpCreator(handler, options);
+          self.start();
+        },
+        onStarted(listener: OnStartedListener): void {
+          const providers = new Map<string, any>();
+          self.onServerStarted((server) => {
+            providers.set("instance", server);
+            listener(this, providers);
+          });
         },
       };
     },
