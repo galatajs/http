@@ -1,4 +1,4 @@
-import { CorePlugin } from "@istanbul/app";
+import { CorePlugin, CorePluginCreator } from "@istanbul/app";
 import { MainRouter } from "../router/router";
 import { Middleware } from "../middleware/middleware";
 import { ErrorHandler, RequestHandler, Server } from "../types/types";
@@ -12,7 +12,7 @@ export interface HttpConfig {
   errorHandler?: ErrorHandler;
 }
 
-export interface HttpApplication {
+export interface HttpApplication extends CorePluginCreator {
   instance?: Server;
   config: HttpConfig;
   router: MainRouter;
