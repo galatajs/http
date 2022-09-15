@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@istanbul/app@^0.0.27":
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/@istanbul/app/-/app-0.0.27.tgz#fa0d43add257ca269f4876f6da0ec6b9f374edc1"
-  integrity sha512-6YI0vGS4erF/IHej+1YZYRF3bPBsqeCkhQJw0WitOeLLtowMVVnVNuT+h0cC4skO5lDzJekj54UPft+U4C4l1Q==
+"@istanbul/app@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@istanbul/app/-/app-0.0.33.tgz#ebe2f5e3c2f58eb6fc1b406743415ff3bd938c5f"
+  integrity sha512-K2Ro5fXX+5jQLfiGyrrKv5elmf64V1gy1guomoYA2Y/SD+5ple3DqtfNAIHQnTEBgw9kDmdSwyfT+KV6eeIZtw==
   dependencies:
     "@istanbul/core" "^0.0.7"
-    "@istanbul/events" "^0.0.4"
+    "@istanbul/events" "^0.0.7"
     "@istanbul/inject" "^0.0.4"
 
 "@istanbul/core@^0.0.7":
@@ -25,6 +25,11 @@
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@istanbul/events/-/events-0.0.4.tgz#a388999ddec7e340741116e5bf145603176e7013"
   integrity sha512-B/ebDpFNvb62SnAX3m2ijVWSS3Fulp74jF2SJza0KGyjDUlPjximT2iUjBbSHZeEPWMcZ7NTCjidEctFL9oIKQ==
+
+"@istanbul/events@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@istanbul/events/-/events-0.0.7.tgz#98f40cc5fdba2f06569bb5db7e33124016c0deef"
+  integrity sha512-7aKYFCC496v9TLXuCAbpzxsZUG0omU3/1cLJmNpCL8Uld+XXP+vOyEIjratx9zSk2pByiBQmaAJ98Ray4qx1Uw==
 
 "@istanbul/inject@^0.0.4":
   version "0.0.4"
