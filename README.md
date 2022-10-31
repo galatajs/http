@@ -13,7 +13,7 @@ This package is the main http package of the ``galatajs`` framework.
 
 Features:
 - ``HTTP/1.1``, ``HTTP/1.2`` and ``HTTPS`` (all versions NodeJS supports nowadays) are supported by this package.
-- It hs its own router and middleware structure.
+- It has its own router and middleware structure.
 - It contains many built-in supported functions (``res.success``, ``res.notFound``, ``req.ip`` etc.)
 - Extends NodeJS's ``http`` types, so they are overwritable.
 - It has its own (overwritable) ``notFound`` and ``errorHandler`` mechanism.
