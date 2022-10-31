@@ -1,5 +1,5 @@
 import url from "node:url";
-import { createRule, RuleResult } from "@istanbul/rules";
+import { createRule, RuleResult } from "@galatajs/rules";
 import { Http1Request, Http2Request } from "../request/request";
 import { Route } from "../router/route";
 

@@ -1,4 +1,4 @@
-const { createApp } = require("@istanbul/app");
+const { createApp } = require("@galatajs/app");
 const { createHttpServer, createRoute, createRouter } = require("../../dist");
 const Request = require("./request");
 
@@ -28,8 +28,8 @@ const m2 = (req, res, next) => {
 };
 
 const m3 = (req, res, next) => {
-  if (req.body.name !== "istanbul")
-    return res.status(400).error("name is not istanbul");
+  if (req.body.name !== "galatajs")
+    return res.status(400).error("name is not galatajs");
   next();
 };
 

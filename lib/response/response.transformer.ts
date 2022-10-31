@@ -5,7 +5,7 @@ import {
   Status,
   SuccessDataResult,
   SuccessResult,
-} from "@istanbul/core";
+} from "@galatajs/core";
 import http2 from "http2";
 import { Http1Response, Http2Response, BaseResponse } from "./response";
 import { setCookie } from "../cookie/cookie.setter";

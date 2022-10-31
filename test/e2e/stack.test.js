@@ -27,7 +27,7 @@ test("HTTP e2e Stack Testing", { only: true }, async (t) => {
 
   await t.test("middleware positive testing", async () => {
     const { data, res } = await request.post("/test/main", {
-      name: "istanbul",
+      name: "galatajs",
     });
     assert.strictEqual(res.status, 200);
     assert.strictEqual(typeof data, "object");
@@ -37,11 +37,11 @@ test("HTTP e2e Stack Testing", { only: true }, async (t) => {
 
   await t.test("middleware negative testing", async () => {
     const { data, res } = await request.post("/test/main", {
-      name: "istanbul2",
+      name: "galatajs2",
     });
     assert.strictEqual(res.status, 400);
     assert.strictEqual(typeof data, "object");
-    assert.strictEqual(data.message, "name is not istanbul");
+    assert.strictEqual(data.message, "name is not galatajs");
     assert.strictEqual(data.success, false);
   });
 

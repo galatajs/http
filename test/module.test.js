@@ -1,7 +1,7 @@
 const assert = require("node:assert");
 const test = require("node:test");
 const http = require("node:http");
-const { createApp } = require("@istanbul/app");
+const { createApp } = require("@galatajs/app");
 const { createHttpServer } = require("../dist");
 
 test("Http Module Testing", async (t) => {

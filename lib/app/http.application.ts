@@ -1,4 +1,4 @@
-import { CorePlugin, CorePluginCreator } from "@istanbul/app";
+import { CorePlugin, CorePluginCreator } from "@galatajs/app";
 import { MainRouter } from "../router/router";
 import { Middleware } from "../middleware/middleware";
 import { ErrorHandler, RequestHandler, Server } from "../types/types";

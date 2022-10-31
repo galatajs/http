@@ -1,18 +1,15 @@
-
-## !! Not ready for production, experimental
-
 <p align="center">
 <br>
 <img src="https://avatars.githubusercontent.com/u/108695351?s=200&v=4" width="128" height="128">
 </p>
-<h3 align="center">@istanbul/http</h3>
+<h3 align="center">@galatajs/http</h3>
 <p align="center">
-  HTTP package of <code>istanbul</code> framework. 
+  HTTP package of <code>galatajs</code> framework. 
 </p>
 
 ### What Is It?
 
-This package is the main http package of the ``istanbul`` framework.
+This package is the main http package of the ``galatajs`` framework.
 
 Features:
 - ``HTTP/1.1``, ``HTTP/1.2`` and ``HTTPS`` (all versions NodeJS supports nowadays) are supported by this package.
@@ -26,23 +23,23 @@ Features:
 
 ### Installation
 
-Note: This package is 1st degree dependent on ``istanbul`` to work. Please take a look at [`@istanbul/app`](https://www.npmjs.com/package/@istanbul/app) first if you haven't. 
+Note: This package is 1st degree dependent on ``galatajs`` to work. Please take a look at [`@galatajs/app`](https://www.npmjs.com/package/@galatajs/app) first if you haven't. 
 
 ```sh
-npm install @istanbul/http
+npm install @galatajs/http
 ```
 
 > or with yarn
 >
 > ```sh
-> yarn add @istanbul/http
+> yarn add @galatajs/http
 > ```
 
 ### Basic Usage
 
 ```typescript
-import {createApp, App} from '@istanbul/app';
-import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@istanbul/http";
+import {createApp, App} from '@galatajs/app';
+import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@galatajs/http";
 
 const app = createApp<App>();
 const server = createHttpServer();
@@ -63,8 +60,8 @@ Middlewares can be used in 3 different ways.
 #### In the ``route`` scope.
 
 ```typescript
-import {createApp} from "@istanbul/app";
-import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@istanbul/http";
+import {createApp} from "@galatajs/app";
+import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@galatajs/http";
 
 const app = createApp<App>();
 const server = createHttpServer();
@@ -89,8 +86,8 @@ app.start();
 
 
 ```typescript
-import {createApp} from "@istanbul/app";
-import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@istanbul/http";
+import {createApp} from "@galatajs/app";
+import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@galatajs/http";
 
 const app = createApp<App>();
 const server = createHttpServer();
@@ -116,8 +113,8 @@ app.start();
 #### In the ``global`` scope.
 
 ```typescript
-import {createApp} from "@istanbul/app";
-import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@istanbul/http";
+import {createApp} from "@galatajs/app";
+import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@galatajs/http";
 
 const app = createApp<App>();
 const server = createHttpServer();
@@ -143,8 +140,8 @@ app.start();
 ### Use Versioned Routes
 
 ```typescript
-import {createApp} from "@istanbul/app";
-import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@istanbul/http";
+import {createApp} from "@galatajs/app";
+import {createHttpServer, createRouter, createRoute, Request, Response, NextFunction} from "@galatajs/http";
 
 const app = createApp<App>();
 const server = createHttpServer();

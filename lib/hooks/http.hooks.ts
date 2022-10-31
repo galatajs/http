@@ -1,5 +1,5 @@
 import { SecureServerOptions } from "node:http2";
-import { App, OnStartedListener, warn } from "@istanbul/app";
+import { App, OnStartedListener, warn } from "@galatajs/app";
 import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
 import { mainRouter } from "./router.hooks";
@@ -47,7 +47,7 @@ export const createHttpServer = (
         version: "1.0.0",
         install(app: App): void {
           const middleware = app.store.inject(
-            "istanbuljs:cors-http-middleware",
+            "galatajs:cors-http-middleware",
             true
           );
           if (middleware) {

@@ -1,4 +1,4 @@
-import { BadRequestError, IError } from "@istanbul/core";
+import { BadRequestError, IError } from "@galatajs/core";
 
 export const checkAndParse = (data: any): any => {
   if (data instanceof IError) return data.serialize();

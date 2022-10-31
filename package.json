@@ -1,11 +1,10 @@
 {
-  "name": "@istanbul/http",
-  "version": "0.0.24",
-  "description": "Http packages of istanbul framework",
-  "homepage": "https://github.com/istanbulnode/http#readme",
+  "name": "@galatajs/http",
+  "version": "0.1.1",
+  "description": "Http packages of galatajs framework",
+  "homepage": "https://github.com/galatajs/http#readme",
   "keywords": [
     "typescript",
-    "istanbul",
     "http",
     "http2",
     "https",
@@ -18,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/istanbulnode/http.git"
+    "url": "git+https://github.com/galatajs/http.git"
   },
   "bugs": {
-    "url": "https://github.com/istanbulnode/http/issues"
+    "url": "https://github.com/galatajs/http/issues"
   },
   "directories": {
     "lib": "lib",
@@ -39,10 +38,10 @@
     "production": "npm run build && npm run test"
   },
   "dependencies": {
-    "@istanbul/app": "^0.0.33",
-    "@istanbul/core": "^0.0.8",
-    "@istanbul/events": "^0.0.4",
-    "@istanbul/rules": "^0.0.3"
+    "@galatajs/app": "^0.1.1",
+    "@galatajs/core": "^0.1.1",
+    "@galatajs/events": "^0.1.1",
+    "@galatajs/rules": "^0.1.1"
   },
   "devDependencies": {
     "@types/node": "^18.6.2",
