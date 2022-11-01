@@ -64,7 +64,9 @@ export const mainRouter: MainRouter = {
   },
 };
 
-export const createRouter = (params: CreateRouterParams): Router => {
+export const createRouter = (
+  params: CreateRouterParams = { prefix: "" }
+): Router => {
   const router: Router = {
     prefix: params.prefix,
     onlyVersion: params.onlyVersion || false,
