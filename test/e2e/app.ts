@@ -77,6 +77,37 @@ createRouter({
   routes: [mainRoute],
 });
 
+const middlewareRouter = createRouter({
+  prefix: "middleware",
+});
+middlewareRouter.use((req, res, next) => {
+  req.data = "global";
+  next();
+});
+
+const guard = (req, res, next) => {
+  if (req.data === "global") {
+    next();
+  } else {
+    res.error("not global");
+  }
+};
+
+const childRouter = createRouter({
+  prefix: "child",
+});
+middlewareRouter.use(childRouter);
+childRouter.use((req, res, next) => {
+  res.success("Hello world");
+});
+childRouter.get("test", (req, res) => {
+  res.success("Hello worlddddd");
+});
+
+middlewareRouter.get("main", [guard], (req, res) => {
+  res.success("Hello world, from main");
+});
+
 server.use(m1, m2);
 
 app.start();
