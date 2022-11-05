@@ -138,6 +138,30 @@ describe("Router testing", () => {
     expect(router.makePath()).toBe("/v1");
   });
 
+  it("createRouter should create a router with children on use method", () => {
+    const router = createRouter({
+      prefix: "test",
+      version: 1,
+      onlyVersion: true,
+    });
+    router.use(
+      createRouter({
+        prefix: "v2",
+        version: 2,
+        onlyVersion: true,
+      })
+    );
+    expect(router).toBeDefined();
+    expect(router.prefix).toBe("test");
+    expect(router.onlyVersion).toBe(true);
+    expect(router.version).toBe(1);
+    expect(router.middlewares).toEqual([]);
+    expect(router.routes).toEqual([]);
+    expect(router.children).toBeDefined();
+    expect(router.children.length).toBe(1);
+    expect(router.makePath()).toBe("/v1");
+  });
+
   it("createRouter should create a router with children and routes", () => {
     const router = createRouter({
       prefix: "test",
