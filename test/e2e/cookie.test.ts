@@ -14,7 +14,7 @@ describe("http e2e cookie testing", () => {
     const response = await request(server.instance)
       .post("/e2e/cookie")
       .expect(200);
-    expect(response.body.message).toBe("cookie");
+    expect(response.body.message).toBe("ok");
   });
 
   it("get cookie after adding", async () => {

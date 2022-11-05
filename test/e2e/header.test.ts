@@ -14,7 +14,7 @@ describe("http e2e header testing", () => {
     const response = await request(server.instance)
       .post("/e2e/header")
       .expect(200);
-    expect(response.body.message).toBe("header");
+    expect(response.body.message).toBe("ok");
   });
 
   it("get header after adding", async () => {
