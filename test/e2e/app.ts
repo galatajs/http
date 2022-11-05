@@ -1,11 +1,11 @@
-const { createApp } = require("@galatajs/app");
-const { createHttpServer, createRoute, createRouter } = require("../../dist");
-const Request = require("./request");
+import { createApp } from "@galatajs/app";
+import { createHttpServer, createRoute, createRouter } from "../../lib";
 
 const app = createApp();
+
 const server = createHttpServer();
-server.config.host = "127.0.0.1";
-app.register(server);
+
+app.register(server.build());
 
 const mainRoute = createRoute({
   path: "main",
@@ -28,8 +28,8 @@ const m2 = (req, res, next) => {
 };
 
 const m3 = (req, res, next) => {
-  if (req.body.name !== "galatajs")
-    return res.status(400).error("name is not galatajs");
+  if (req.body.name !== "galata")
+    return res.status(400).error("name is not galata");
   next();
 };
 
@@ -75,49 +75,10 @@ router.all("*", (req, res) => {
 createRouter({
   prefix: "test",
   routes: [mainRoute],
-  middlewares: [m3],
-});
-
-const routerUnique = createRouter({
-  prefix: "unique",
-});
-routerUnique.get("single", (req, res) => {
-  res.success("Single Listener");
 });
 
 server.use(m1, m2);
 
-let request;
+app.start();
 
-const tryConnection = async () => {
-  try {
-    await app.start();
-  } catch (e) {
-    if (e.code === "EADDRINUSE") {
-      tryConnection();
-    }
-  }
-};
-
-beforeAll = async (port) => {
-  if (server.instance && server.instance.listening) return request;
-  server.config.port = port;
-  return new Promise((resolve, reject) => {
-    server.onServerStarted(() => {
-      const port = server.instance.address().port;
-      const baseUrl = `http://127.0.0.1:${port}`;
-      request = new Request(baseUrl);
-      resolve(request);
-    });
-    tryConnection();
-  });
-};
-
-afterAll = async () => {
-  server.instance.close();
-};
-
-module.exports = {
-  beforeAll,
-  afterAll,
-};
+export { app, server };
