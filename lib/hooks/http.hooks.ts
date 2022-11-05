@@ -4,6 +4,7 @@ import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
 import { mainRouter } from "./router.hooks";
 import {
+  ErrorHandler,
   Http1App,
   Http2App,
   Http2SecureApp,
@@ -88,6 +89,30 @@ export const createHttpServer = (
       } else {
         showNotBuiltWarn();
       }
+    },
+    get prefix(): string {
+      return this.config.globalPrefix;
+    },
+    get port(): number {
+      return this.config.port;
+    },
+    get url(): string {
+      return `http://${this.config.host}:${this.config.port}`;
+    },
+    set prefix(prefix: string) {
+      this.config.globalPrefix = prefix;
+    },
+    set port(port: number) {
+      this.config.port = port;
+    },
+    set host(host: string) {
+      this.config.host = host;
+    },
+    set notFoundRoute(handler: RequestHandler) {
+      this.config.notFoundRoute = handler;
+    },
+    set errorHandler(handler: ErrorHandler) {
+      this.config.errorHandler = handler;
     },
   };
 };

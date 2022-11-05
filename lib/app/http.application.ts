@@ -16,6 +16,14 @@ export interface HttpApplication extends CorePluginCreator {
   instance?: Server;
   config: HttpConfig;
   router: MainRouter;
+  get prefix(): string;
+  get port(): number;
+  get url(): string;
+  set prefix(prefix: string);
+  set port(port: number);
+  set host(host: string);
+  set notFoundRoute(handler: RequestHandler);
+  set errorHandler(handler: ErrorHandler);
   build(): CorePlugin;
   use(...middlewares: Middleware[]): void;
   start(): void;
