@@ -2,7 +2,7 @@ import { SecureServerOptions } from "node:http2";
 import { App, OnStartedListener, warn } from "@galatajs/app";
 import { HttpApplication } from "../app/http.application";
 import { Middleware } from "../middleware/middleware";
-import { mainRouter } from "./router.hooks";
+import { createRouter, mainRouter } from "./router.hooks";
 import {
   Http1App,
   Http2App,
@@ -24,6 +24,8 @@ export const createHttpServer = (
     warn("HTTP - Server is not built yet");
   };
 
+  const router = createRouter({ prefix: "" });
+
   return {
     instance: undefined,
     config: {
@@ -33,9 +35,10 @@ export const createHttpServer = (
       notFoundRoute: notFoundRoute,
       errorHandler: undefined,
     },
-    router: mainRouter,
+    router: router,
+    mainRouter: mainRouter,
     use(..._middlewares: Middleware[]): void {
-      this.router.use(..._middlewares);
+      this.mainRouter.use(..._middlewares);
     },
     onServerStarted(hook: ServerCreatedListener) {
       onServerStarted.addListener(hook);
@@ -54,7 +57,7 @@ export const createHttpServer = (
             self.use(middleware);
           }
           const handler = (req, res) => {
-            self.router.handle(
+            self.mainRouter.handle(
               req,
               res,
               self.config.notFoundRoute,

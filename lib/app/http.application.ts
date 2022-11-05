@@ -1,5 +1,5 @@
 import { CorePlugin, CorePluginCreator } from "@galatajs/app";
-import { MainRouter } from "../router/router";
+import { MainRouter, Router } from "../router/router";
 import { Middleware } from "../middleware/middleware";
 import { ErrorHandler, RequestHandler, Server } from "../types/types";
 import { ServerCreatedListener } from "../events/http.events";
@@ -15,7 +15,8 @@ export interface HttpConfig {
 export interface HttpApplication extends CorePluginCreator {
   instance?: Server;
   config: HttpConfig;
-  router: MainRouter;
+  mainRouter: MainRouter;
+  router: Router;
   build(): CorePlugin;
   use(...middlewares: Middleware[]): void;
   start(): void;
