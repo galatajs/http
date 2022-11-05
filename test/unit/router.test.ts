@@ -15,6 +15,18 @@ describe("Router testing", () => {
     expect(router.makePath()).toBe("api");
   });
 
+  it("createRouter should create a router without parameters", () => {
+    const router = createRouter();
+    expect(router).toBeDefined();
+    expect(router.prefix).toBe("");
+    expect(router.onlyVersion).toBe(false);
+    expect(router.version).toBe(undefined);
+    expect(router.middlewares).toEqual([]);
+    expect(router.routes).toEqual([]);
+    expect(router.children).toEqual([]);
+    expect(router.makePath()).toBe("");
+  });
+
   it("createRouter should create a router with version", () => {
     const router = createRouter({
       prefix: "api",

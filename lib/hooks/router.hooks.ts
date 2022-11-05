@@ -65,14 +65,17 @@ export const mainRouter: MainRouter = {
 };
 
 export const createRouter = (
-  params: CreateRouterParams = { prefix: "" }
+  params: CreateRouterParams | string = ""
 ): Router => {
+  const _params: CreateRouterParams =
+    typeof params === "string" ? { prefix: params } : params;
+
   const router: Router = {
-    prefix: params.prefix,
-    onlyVersion: params.onlyVersion || false,
-    version: params.version,
-    middlewares: params.middlewares || [],
-    routes: params.routes || [],
+    prefix: _params.prefix,
+    onlyVersion: _params.onlyVersion || false,
+    version: _params.version,
+    middlewares: _params.middlewares || [],
+    routes: _params.routes || [],
     children: [],
     makePath(prefix: string = "/"): string {
       const suffix = `/v${this.version || 1}`;
