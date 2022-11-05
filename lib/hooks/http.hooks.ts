@@ -96,6 +96,9 @@ export const createHttpServer = (
     get port(): number {
       return this.config.port;
     },
+    get host(): string {
+      return this.config.host;
+    },
     get url(): string {
       return `http://${this.config.host}:${this.config.port}`;
     },

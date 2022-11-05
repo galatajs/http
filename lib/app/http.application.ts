@@ -18,6 +18,7 @@ export interface HttpApplication extends CorePluginCreator {
   router: MainRouter;
   get prefix(): string;
   get port(): number;
+  get host(): string;
   get url(): string;
   set prefix(prefix: string);
   set port(port: number);
