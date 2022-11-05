@@ -1,6 +1,6 @@
 {
   "name": "@galatajs/http",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Http packages of galatajs framework",
   "homepage": "https://github.com/galatajs/http#readme",
   "keywords": [
